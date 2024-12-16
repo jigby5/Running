@@ -1,0 +1,80 @@
+img{
+    width: 25vw;
+    padding: 10px;
+    border: 10px solid aqua;
+    display: inline-block;
+    margin: 10px
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    color: cyan;
+    background-color: rgb(15, 15, 15);
+}
+
+.intro{
+    margin: 3%;
+    top: 30px;
+}
+
+h1{
+    padding-left: 20px;
+    text-decoration: underline;
+    font-weight: bolder;
+    font-size: 30px;
+}
+.bluebox{
+    position: relative;
+    text-align: center;
+    background-color: aqua;
+    margin: 0%;
+}
+
+.myimage{
+    padding: 10px;
+    border: 10px solid aqua;
+    display: inline-block;
+    margin: 20px
+}
+
+.prSpeed{
+    position: relative;
+    float: right;
+    margin: 50px;
+}
+
+a{
+    background-color: aqua;
+    margin: 5px;
+    padding: 2px;
+    border-radius: 10%;
+}
+
+a:link{
+    color: blue;
+}
+
+a:visited{
+    color: blueviolet;
+}
+
+a:hover{
+    font-size: 105%;
+}
+
+.strava{
+    border: 10px solid aqua;
+    padding: 10px;
+    margin: 20px
+}
+
+.gallery{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resizeimage{
+    width: 45%;
+    max-width: 100%;
+}

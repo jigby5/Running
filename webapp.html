@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jigby vs. Bolt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: lightblue;
+    }
+    .race-track {
+      position: relative;
+      width: 80%;
+      height: 250px;
+      margin: 50px auto;
+      border: 2px solid #000;
+    }
+    .runner {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      line-height: 100px;
+      border-radius: 50%;
+    }
+    #player {
+      /* Replace the placeholder URL with the path to your player image */
+      background-image: url(pictures/jigby.jpg);
+      z-index: 2;
+      top: 20px;
+
+    }
+    #computer {
+      /* Replace the placeholder URL with the path to your computer image */
+      background-image: url(pictures/usainBolt.jpg);
+      z-index: 1;
+      top: 120px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .bottomx {
+      position: relative;
+      text-align: center;
+    }
+  </style>
+  <link rel="icon" href="pictures/running.png" type="image/png">
+</head>
+<body>
+  <h1>Jigby vs. Usain Bolt</h1>
+  <p>Press the button as fast as you can to make Jigby win! He's the GOAT!</p>
+
+  <div class="race-track">
+    <div id="player" class="runner"></div>
+    <div id="computer" class="runner"></div>
+  </div>
+
+  <div class="bottomx">
+    <a href="scratch.html">Give Up (go back to homepage)</a>
+  </div>
+
+  <button id="run-button">Run!</button>
+  <p id="message"></p>
+  <button id="restart-button" style="display: none;">Restart</button>
+
+  <script>
+    const player = document.getElementById("player");
+    const computer = document.getElementById("computer");
+    const runButton = document.getElementById("run-button");
+    const restartButton = document.getElementById("restart-button");
+    const message = document.getElementById("message");
+
+    let playerPosition = 0;
+    let computerPosition = 0;
+    const finishLine = document.querySelector(".race-track").offsetWidth - 100; // track width minus runner width
+
+    let computerInterval;
+
+    function startGame() {
+      playerPosition = 0;
+      computerPosition = 0;
+      player.style.left = "0px";
+      computer.style.left = "0px";
+      message.textContent = "";
+      runButton.disabled = false;
+      restartButton.style.display = "none";
+
+      // Start the computer runner
+      computerInterval = setInterval(() => {
+        if (computerPosition < finishLine) {
+          computerPosition += 1.9; // adjust for faster speed
+          computer.style.left = computerPosition + "px";
+        }
+        checkWinner();
+      }, 30);
+    }
+
+    runButton.addEventListener("click", () => {
+      if (playerPosition < finishLine) {
+        playerPosition += 10; // adjust for difficulty
+        player.style.left = playerPosition + "px";
+      }
+      checkWinner();
+    });
+
+    restartButton.addEventListener("click", startGame);
+
+    function checkWinner() {
+      if (playerPosition >= finishLine && computerPosition < finishLine) {
+        message.textContent = "Jigby wins!";
+        endGame();
+      } else if (computerPosition >= finishLine && playerPosition < finishLine) {
+        message.textContent = "Usain Bolt wins :(";
+        endGame();
+      }
+    }
+
+    function endGame() {
+      clearInterval(computerInterval);
+      runButton.disabled = true;
+      restartButton.style.display = "inline-block";
+    }
+
+    // Start the first game
+    startGame();
+  </script>
+</body>
+</html>
